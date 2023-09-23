@@ -1,44 +1,50 @@
 <?php
 
-$student_information = 
+$studentInformation = 
 [
-    "student_1" => 
+    "student-1" => 
     [
         "name" => "John",
         "age" => 20,
-        "favorite_subjects" => ["Math", "Science"]
+        "favoriteSubjects" => ["Math", "Science", "English"]
     ],
 
-    "student_2" => 
+    "student-2" => 
     [
         "name" => "Alice",
         "age" => 18,
-        "favorite_subjects" => ["History", "English"]
+        "favoriteSubjects" => ["History", "English"]
     ],
 
-    "student_3" => 
+    "student-3" => 
     [
         "name" => "Bob",
         "age" => 19,
-        "favorite_subjects" => ["Art", "Music"]
+        "favoriteSubjects" => ["Art", "Music"]
     ]
 ];
 
 // Calculating average age
-function average_age()
+function averageAge() : float
 {
-    global $student_information;
+    global $studentInformation;
     $sum = 0;
 
-    foreach($student_information as $stud_info)
-        $sum += $stud_info['age'];
+    foreach($studentInformation as $studInfo)
+        $sum += $studInfo['age'];
 
     return $sum / 3;
 }
 
-echo "The average age of the students is " . average_age();
+echo "The average age of the students is " . averageAge();
 
 // Students with the most favorite subjects.
+
+
+
+
+
+/*
 function find_favorite_subjects()
 {
     global $student_information;
@@ -49,14 +55,37 @@ function find_favorite_subjects()
     }
 }
 
-find_favorite_subjects();
+
+findFavoriteSubjects();
+*/
 
 // Json encoding
-$encoded_student_information = json_encode($student_information); 
-echo $encoded_student_information;
+$encodedStudentInformation = json_encode($studentInformation); 
+echo $encodedStudentInformation;
 
 // Json decoding
-$decoded_student_information = json_decode($encoded_student_information);
-print_r($decoded_student_information);
+$decodedStudentInformation = json_decode($encodedStudentInformation);
+// print_r($decodedStudentInformation);
 
+
+// displaying each student's information
+$i = 1;
+foreach($studentInformation as $studInfo)
+{   
+    echo "\n\nStudent-$i:\n";
+
+    echo "Name: {$studInfo['name']}\n";
+    echo "Age: {$studInfo['age']}\n";
+    echo "Favorite Subjects: ";
+
+    $favoriteSubjectsString = "";
+    foreach($studInfo['favoriteSubjects'] as $favoriteSubjects)
+    {
+        $favoriteSubjectsString .= $favoriteSubjects . ", ";
+        // echo("$favoriteSubjects, ");
+    }
+    echo rtrim($favoriteSubjectsString, ", ");
+    
+    $i++;
+}
 
