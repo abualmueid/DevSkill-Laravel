@@ -121,8 +121,3 @@ foreach($studentInformation as $studInfo)
     
     $i++;
 }
-
-
-
-
-
