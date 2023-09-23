@@ -21,32 +21,37 @@ Answer:
 
 <?php
 
-// Creating an array of three student's information
+//--------- Creating an array of three student's information ---------//
+
 $studentInformation = 
 [
-    "student-1" => 
-    [
-        "name" => "John",
-        "age" => 20,
-        "favoriteSubjects" => ["Math", "Science", "English"]
-    ],
+  "student-1" => 
+  [
+    "name" => "John",
+    "age" => 20,
+    "favoriteSubjects" => ["Math", "Science", "English"]
+  ],
 
-    "student-2" => 
-    [
-        "name" => "Alice",
-        "age" => 18,
-        "favoriteSubjects" => ["History", "English"]
-    ],
+  "student-2" => 
+  [
+    "name" => "Alice",
+    "age" => 18,
+    "favoriteSubjects" => ["History", "English"]
+  ],
 
-    "student-3" => 
-    [
-        "name" => "Bob",
-        "age" => 19,
-        "favoriteSubjects" => ["Art", "Music"]
-    ]
+  "student-3" => 
+  [
+    "name" => "Bob",
+    "age" => 19,
+    "favoriteSubjects" => ["Art", "Music"]
+  ]
 ];
 
-// Calculating average age
+echo("Array of Student Information:\n\n");
+print_r($studentInformation);
+
+//------- Calculating average age -------//
+
 function averageAge() : float
 {
     global $studentInformation;
@@ -58,39 +63,66 @@ function averageAge() : float
     return $sum / 3;
 }
 
-echo "The average age of the students is " . averageAge();
+echo("\nThe average age of the students is " . averageAge() . "\n\n");
 
-// Students with the most favorite subjects.
+// -------- Finding the most favorite subject --------- //
 
-
-
-
-
-/*
-function find_favorite_subjects()
+function findTheMostFavoriteSubject() : string 
 {
-    global $student_information;
+    // Create an array to store how many times each subject is mentioned
 
-    foreach($student_information as $stud_info)
+    $subjectCounts = [];
+    global $studentInformation;
+    foreach($studentInformation as $studInfo)
     {
-        print_r($stud_info['favorite_subjects']);
+        foreach($studInfo['favoriteSubjects'] as $subject)
+        {
+            if(!isset($subjectCounts[$subject]))
+            {
+                $subjectCounts[$subject] = 0;
+            }
+            if(isset($subjectCounts[$subject]))
+            {
+                $subjectCounts[$subject]++;
+            }
+        }
     }
+
+    // Find the subject with the most mentions
+
+    $maxCount = 0;
+    $mostFavoriteSubject = null;
+
+    foreach($subjectCounts as $subject => $count)
+    {
+        if($count > $maxCount)
+        {
+            $maxCount = $count;
+            $mostFavoriteSubject = $subject;
+        }
+    }
+
+    return $mostFavoriteSubject;
 }
 
+echo("The most favorite subject is " . findTheMostFavoriteSubject());
 
-findFavoriteSubjects();
-*/
+//------- Json encoding -------//
 
-// Json encoding
 $encodedStudentInformation = json_encode($studentInformation); 
+echo("\n\nJSON Format: \n\n");
 echo $encodedStudentInformation;
 
-// Json decoding
+//------- Json decoding -------//
+
 $decodedStudentInformation = json_decode($encodedStudentInformation);
 // print_r($decodedStudentInformation);
 
 
-// displaying each student's information
+//-------- displaying each student's information ----------//
+
+echo("\n\nStudent's Information:");
+
 $i = 1;
 foreach($studentInformation as $studInfo)
 {   
@@ -110,4 +142,3 @@ foreach($studentInformation as $studInfo)
     
     $i++;
 }
-
