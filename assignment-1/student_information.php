@@ -1,5 +1,6 @@
 <?php
 
+// Creating an array of three student's information
 $studentInformation = 
 [
     "student-1" => 
@@ -36,7 +37,7 @@ function averageAge() : float
     return $sum / 3;
 }
 
-echo "The average age of the students is " . averageAge();
+echo("The average age of the students is " . averageAge() . "\n\n");
 
 // Students with the most favorite subjects.
 
@@ -61,6 +62,7 @@ findFavoriteSubjects();
 
 // Json encoding
 $encodedStudentInformation = json_encode($studentInformation); 
+echo("JSON Format: \n\n");
 echo $encodedStudentInformation;
 
 // Json decoding
@@ -69,6 +71,8 @@ $decodedStudentInformation = json_decode($encodedStudentInformation);
 
 
 // displaying each student's information
+echo("\n\nStudent's Information:");
+
 $i = 1;
 foreach($studentInformation as $studInfo)
 {   
