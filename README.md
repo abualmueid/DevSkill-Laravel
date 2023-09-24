@@ -1,1 +1,1 @@
-This branch will consist of all class notes of Software Development with Laravel & Vue.js course.
+This repo will mainly consist of all projets, assignments and other necessary things for the purpose of completion of DevSkill's Software Development with Laravel & Vue.js course.
