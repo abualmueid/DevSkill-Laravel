@@ -2,15 +2,15 @@
 
 class Student
 {
-    private string $name;
-    private int $age;
-    private array $favoriteSubjects;
+    // private string $name;
+    // private int $age;
+    // private array $favoriteSubjects;
 
-    public function __construct(string $name, int $age, array $favoriteSubjects)
+    public function __construct(private string $name, private int $age, private array $favoriteSubjects)
     {
-        $this->name = $name;
-        $this->age = $age;
-        $this->favoriteSubjects = $favoriteSubjects;
+        // $this->name = $name;
+        // $this->age = $age;
+        // $this->favoriteSubjects = $favoriteSubjects;
     }
 
     public function toArray() : array
