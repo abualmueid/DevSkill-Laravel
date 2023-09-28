@@ -60,7 +60,7 @@ $s3 = new Student("Bob", 19, ["Art", "Music"]);
 $students = [$s1, $s2, $s3];
 echo("\nThe average age of the students is " . averageAge($students) . "\n\n");
 
-function averageAge($students)
+function averageAge($students) : float
 {
     $sum = 0;
     foreach($students as $student)
@@ -73,7 +73,7 @@ function averageAge($students)
 
 echo("The most favorite subject is " . findTheMostFavoriteSubject($students));
 
-function findTheMostFavoriteSubject($students)
+function findTheMostFavoriteSubject($students) : string
 {
     // Create an array to store how many times each subject is mentioned
 
