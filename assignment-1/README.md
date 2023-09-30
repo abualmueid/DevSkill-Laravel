@@ -9,15 +9,14 @@ Student 3: Name - "Bob", Age - 19, Favorite Subjects - ["Art", "Music"]
 Write a PHP function to calculate the average age of the students.
 
 ```
-function averageAge($students)
+function averageAge($students) : float
 {
     $sum = 0;
-    foreach($students as $student)
-    {
-        $sum += $student->getAge();
-    }
 
-    return $sum / count($students);
+    foreach($students as $student)
+        $sum += $student['age'];
+
+    return $sum / 3;
 }
 ```
 
@@ -37,13 +36,16 @@ Create an array to store how many times each subject is mentioned
 $subjectCounts = [];
     foreach($students as $student)
     {
-        $favoriteSubjects = $student->getFavoriteSubjects();
-        foreach($favoriteSubjects as $subject)
+        foreach($student['favoriteSubjects'] as $subject)
         {
             if(!isset($subjectCounts[$subject]))
+            {
                 $subjectCounts[$subject] = 0;
+            }
             if(isset($subjectCounts[$subject]))
+            {
                 $subjectCounts[$subject]++;
+            }
         }
     }
 ```
@@ -92,6 +94,25 @@ JSON Format:
 
 Display the information of each student, including their name, age, and favorite subjects. 
 
+$i = 1;
+foreach($students as $student)
+{   
+    echo "\n\nStudent-$i:\n";
+
+    echo "Name: {$student['name']}\n";
+    echo "Age: {$student['age']}\n";
+    echo "Favorite Subjects: ";
+
+    $favoriteSubjectsString = "";
+    foreach($student['favoriteSubjects'] as $favoriteSubjects)
+    {
+        $favoriteSubjectsString .= $favoriteSubjects . ", ";
+        // echo("$favoriteSubjects, ");
+    }
+    echo rtrim($favoriteSubjectsString, ", ");
+    
+    $i++;
+}
 ```
 $i = 1;
 foreach($students as $student)
