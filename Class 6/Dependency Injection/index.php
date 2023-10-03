@@ -10,6 +10,6 @@ class Programmer
 
 }
 
-$skillSet = array("Coding", "Debugging", "Testing"); // Creating Dependency
+$skillSet = array("Coding", "Debugging", "Testing"); // Creating dependency
 $skills = new Programmer($skillSet); // Injecting dependecny
 print_r($skills->skillSet);
