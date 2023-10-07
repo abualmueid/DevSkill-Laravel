@@ -1,1 +1,1 @@
-This repo will mainly consist of all projets, assignments, exam scripts and other necessary things for the purpose of completion of DevSkill's Software Development with Laravel & Vue.js course.
+This branch will have OOP Assignment-1 Solution for the purpose of completion of DevSkill's Software Development with Laravel & Vue.js course.
