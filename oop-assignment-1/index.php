@@ -1,11 +1,27 @@
 <?php 
 
-class Student
+class Parents
 {
-    private int $id;
-    private string $name;
-    private string $major;
+    protected array $parents;
 
+    public function addParents($id, array $parents) : void
+    {
+        $this->parents[$id] = $parents;
+    }
+
+    public function getParents() : array
+    {
+        return $this->parents;
+    }
+
+    public function getParent($id) : array
+    {
+        return $this->parents[$id] ?? [];
+    }
+}
+
+class Student extends Parents
+{
     private array $students;
 
     public function addStudent(array $students) : void
@@ -14,6 +30,9 @@ class Student
         {
             $id = $student['id'] ?? uniqid();
             $this->students[$id] = $student;
+
+            // adding parents here
+            // $this->students[$id] = $this->getParent($id);
         }
     }
 
@@ -52,4 +71,40 @@ $student = new Student();
 $student->addStudent($students);
 echo json_encode($student->getStudents());
 //echo json_encode($student->getStudent(1756669));
+
+// You can create $parents array but then you need to create array of id's also.
+/*
+$parents = [
+    [
+        "fatherName" => "Abu Bakar Siddique",
+        "motherName" => "Monowara Begum"
+    ],
+    [
+        "fatherName" => "Shorof Mahmud",
+        "motherName" => "Anika Khatun"
+    ],
+    [
+        "fatherName" => "Sadekur Rahman",
+        "motherName" => "Bornali Begum"
+    ]
+];
+*/
+
+$student->addParents(1520730, [
+    "fatherName" => "Abu Bakar Siddique",
+    "motherName" => "Monowara Begum",
+]);
+
+$student->addParents(1621321, [
+    "fatherName" => "Shorof Mahmud",
+    "motherName" => "Anika Khatun"
+]);
+
+$student->addParents(1756669, [
+    "fatherName" => "Sadekur Rahman",
+    "motherName" => "Bornali Begum"
+]);
+
+// echo json_encode($student->getParents());
+// echo json_encode($student->getParent(1520730));
 
