@@ -1,5 +1,20 @@
 <?php 
 
+trait StudentPayment
+{
+    private array $studentPayments;
+
+    public function addPayment($id, $amount) : void
+    {
+        $this->studentPayments[$id] = $amount;
+    }
+
+    public function getPayment($id) : int | float
+    {
+        return $this->studentPayments[$id];
+    }
+}
+
 class Parents
 {
     protected array $parents;
@@ -22,6 +37,8 @@ class Parents
 
 class Student extends Parents
 {
+    use StudentPayment;
+
     private array $students;
 
     public function addStudent(array $students) : void
@@ -70,7 +87,7 @@ $students = [
 $student = new Student();
 $student->addStudent($students);
 echo json_encode($student->getStudents());
-//echo json_encode($student->getStudent(1756669));
+echo json_encode($student->getStudent(1756669));
 
 // You can create $parents array but then you need to create array of id's also.
 /*
@@ -105,6 +122,8 @@ $student->addParents(1756669, [
     "motherName" => "Bornali Begum"
 ]);
 
-// echo json_encode($student->getParents());
-// echo json_encode($student->getParent(1520730));
+echo json_encode($student->getParents());
+echo json_encode($student->getParent(1520730));
 
+$student->addPayment(1520730, 15000);
+echo json_encode($student->getPayment(1520730));
