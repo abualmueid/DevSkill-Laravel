@@ -6,9 +6,20 @@ trait Customer
 
     public function addCustomer(int $bookId, array $customer) : bool
     {
-        $this->customers[$bookId] = $customer;
+        if(strlen($customer['mobileNo']) !== 11)
+        {
+            echo "Invalid Mobile No!";
 
-        return true;
+            return false;
+        }
+
+        if(strlen($customer['mobileNo']) === 11)
+        {
+            echo "Valid Mobile No!";
+            $this->customers[$bookId] = $customer;
+
+            return true;
+        }
     }
 
     public function getCustomers() : array
