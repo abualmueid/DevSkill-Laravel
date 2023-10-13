@@ -1,86 +1,77 @@
-# Student Information
+# Book Shop
 
-Student-1: "id": 1520730, "name": "Mueid", "major": "CS" <br>
-Student-2: "id": 1621321, "name": "Rasel", "major": "EEE" <br>
-Student-3: "id": 1756669, "name": "Mustafiz", "major": "ETE" <br>
+Book-1: "uId" => 1001, "name" => "Bela Furabar Age", "price" => 150 <br>
+Book-2: "uId" => 1002, "name" => "Islami Akida", "price" => 320 <br>
+Book-3: "uId" => 1003, "name" => "Hadiser name jaliyati", "price" => 350 <br>
 
 ## Question 1
 
-store student with student id
+Store Book information with UID. Book info must include name, price.
 
 ```
-public function addStudent(array $students) : void
-    {
-        foreach($students as $student)
-        {
-            $id = $student['id'] ?? uniqid();
-            $this->students[$id] = $student;
 
-            // adding parents here
-            // $this->students[$id] = $this->getParent($id);
-        }
+public function addBook(array $book) : bool
+    {
+        $uId = $book['uId'];
+        $this->books[$uId] = $book;
+
+        return true;
     }
 
 ```
 
 ## Question 2
 
-get student by student id
+Store Selling Information of book. Like - customer information, payment information
+
+### customer information
+
+must store customer mobile number with checking 11 digit.
 
 ```
-public function getStudent($id) : array
+
+public function addCustomer(int $bookId, array $customer) : bool
     {
-        return $this->students[$id] ?? []; 
-        // return isset($this->students[$id]) ? $this->students[$id] : []; 
-        // You don't need foreach loop here. Because it's already there inside isset() method.
+        if(strlen($customer['mobileNo']) !== 11)
+        {
+            echo "Invalid Mobile No!";
+
+            return false;
+        }
+
+        if(strlen($customer['mobileNo']) === 11)
+        {
+            echo "Valid Mobile No!";
+            $this->customers[$bookId] = $customer;
+
+            return true;
+        }
     }
 
 ```
 
-## Question 3
+### payment information
 
-add parents by student id
+Must validate price when receive sell amount of a book.
 
 ```
-public function addParents($id, array $parents) : void
+
+public function addPayment(int $bookId, int|float $amount, object $book) : bool
     {
-        $this->parents[$id] = $parents;
+        if($book->getBook($bookId)['price'] !== $amount)
+        {
+            echo "Payment Unsuccessful!";
+
+            return false;
+        }
+        
+        if($book->getBook($bookId)['price'] === $amount)
+        {
+            $this->payments[$bookId] = $amount;
+            echo "Payment Successful!";
+
+            return true;
+        }
     }
-    
-```
 
-## Question 4
-
-get parents by student id
-
-```
-public function addParents($id, array $parents) : void
-    {
-        $this->parents[$id] = $parents;
-    }
-    
-```
-
-## Question 5
-
-add payment by student id
-
-```
-public function addPayment($id, $amount) : void
-    {
-        $this->studentPayments[$id] = $amount;
-    }
-    
-```
-
-## Question 6
-
-get payment by student id
-
-```
-public function getPayment($id) : int | float
-    {
-        return $this->studentPayments[$id];
-    }
-    
 ```
