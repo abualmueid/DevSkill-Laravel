@@ -1,5 +1,10 @@
 <?php
 
+namespace DevSkill\Book;
+
+use DevSkill\Customer\Customer;
+use DevSkill\Payment\Payment;
+
 class Book
 {
     use Customer, Payment;

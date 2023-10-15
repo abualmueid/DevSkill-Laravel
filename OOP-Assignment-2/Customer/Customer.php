@@ -1,5 +1,7 @@
 <?php 
 
+namespace DevSkill\Customer;
+
 trait Customer
 {
     private array $customers;

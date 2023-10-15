@@ -1,5 +1,7 @@
 <?php 
 
+namespace DevSkill\Payment;
+
 trait Payment
 {
     private array $payments;

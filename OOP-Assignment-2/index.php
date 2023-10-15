@@ -1,8 +1,11 @@
 <?php
 
-include('Customer/Customer.php');
-include('Payment/Payment.php');
-include('Book/Book.php');
+use DevSkill\Book\Book;
+
+// include('Customer/Customer.php');
+// include('Payment/Payment.php');
+// include('Book/Book.php');
+include('vendor/autoload.php');
 
 $book = new Book();
 
