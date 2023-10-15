@@ -1,39 +1,15 @@
 <?php
 
-include('Customer.php');
-include('Payment.php');
-
-class Book
-{
-    use Customer, Payment;
-
-    private array $books;
-
-    public function addBook(array $book) : bool
-    {
-        $uId = $book['uId'];
-        $this->books[$uId] = $book;
-
-        return true;
-    }
-
-    public function getBooks() : array
-    {
-        return $this->books ?? [];
-    }
-
-    public function getBook($bookId) : array
-    {
-        return $this->books[$bookId] ?? [];
-    }
-}
+include('Customer/Customer.php');
+include('Payment/Payment.php');
+include('Book/Book.php');
 
 $book = new Book();
 
 $bookInfo = [
     "uId" => 1001,
     "name" => "Bela Furabar Age",
-    "price" => 150
+    "price" => 150 
 ];
 $book->addBook($bookInfo);
 
