@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "DevSkill\\": "oop-assignment-2/"
+            "DevSkill\\": "src/"
         }
     },
     "authors": [
