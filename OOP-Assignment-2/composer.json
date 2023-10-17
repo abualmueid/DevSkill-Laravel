@@ -1,18 +1,18 @@
 {
-    "name": "abualmueid/oop-assignment-2",
-    "description": "A package for Book Shop project",
+    "name": "abualmueid/bookshop",
+    "description": "A book shop project for practice",
     "type": "project",
     "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DevSkill\\": "oop-assignment-2/"
+        }
+    },
     "authors": [
         {
             "name": "Abu Al Mueid",
             "email": "abualmueid24@gmail.com"
         }
     ],
-    "require": {},
-    "autoload": {
-        "psr-4": {
-            "DevSkill\\": "OOP-Assignment-2/"
-        }
-    }
+    "require": {}
 }
