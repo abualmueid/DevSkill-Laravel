@@ -30,11 +30,13 @@ class Application
 
     public function boot(): void 
     {
-        foreach($this->providers as $provider)
-        {
-            $providerObject = new $provider();
+        try{
+            $appConfig = include $this->path('config/app.php');
+            $this->providers = array_merge($this->providers, $appConfig['providers']);
 
-            try{
+            foreach($this->providers as $provider)
+            {
+                $providerObject = new $provider();
 
                 if($providerObject instanceof ProviderInterface)
                 {
@@ -42,11 +44,9 @@ class Application
                 } else {
                     throw new Exception($provider . ' does not implement ' . ProviderInterface::class);
                 }
-                
-            } catch(Exception $exception) {
-                echo $exception->getMessage();
             }
+        } catch(Exception $exception) {
+            echo $exception->getMessage();
         }
-
     }
 }
