@@ -7,6 +7,6 @@ class UserServiceProvider implements ProviderInterface
 {
     public function boot(): void 
     {
-        echo "From User Service Provider";
+        echo "\nFrom User Service Provider";
     }
 }

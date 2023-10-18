@@ -12,6 +12,17 @@ class Application
     protected array $providers = [
         RouteServiceProvider::class
     ];
+    private static Application|null $instance = null;
+
+    public static function instance(string $path = null): self
+    {
+        if(!self::$instance)
+        {
+            self::$instance = new self($path);
+        }
+
+        return self::$instance;
+    }
 
     public function __construct(string $root)
     {
@@ -31,7 +42,10 @@ class Application
     public function boot(): void 
     {
         try{
-            $appConfig = include $this->path('config/app.php');
+            app();
+            // $appConfig = include $this->path('config/app.php');
+            // $appConfig = include app()->path('config/app.php');
+            $appConfig = loadConfig('app.php');
             $this->providers = array_merge($this->providers, $appConfig['providers']);
 
             foreach($this->providers as $provider)
