@@ -2,6 +2,7 @@
 
 include('vendor/autoload.php');
 
-echo "Mueid";
-
 $application = new \DevSkill\Application(__DIR__);
+
+echo $application->rootPath();
+echo $application->boot();
