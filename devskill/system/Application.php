@@ -48,6 +48,8 @@ class Application
             $appConfig = loadConfig('app.php');
             $this->providers = array_merge($this->providers, $appConfig['providers']);
 
+            echo readConfig('Services.database');
+
             foreach($this->providers as $provider)
             {
                 $providerObject = new $provider();

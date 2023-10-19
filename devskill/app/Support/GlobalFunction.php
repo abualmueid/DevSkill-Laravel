@@ -9,7 +9,17 @@ function app(): Application
     return Application::instance();
 }
 
-function loadConfig($path): array
+function loadConfig($path)
 {
-    return include app()->path('config/' . $path);
+    $path = app()->path('config/' . $path);
+
+    return file_exists($path) ? include $path : "Path does not exist!";
+}
+
+function readConfig($path)
+{
+    $path = explode(".", $path);
+    $data = loadConfig($path[0] . '.php');
+    
+    return $data[$path[1]];
 }
