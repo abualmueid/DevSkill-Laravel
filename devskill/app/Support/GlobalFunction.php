@@ -35,25 +35,20 @@ function config($path, $default = null)
     $value = [];
 
     $array = explode('.', $path);
-    // print_r($array);
     foreach ($array as $key)
     {
         if($value)
         {
-            $value = $value[$key] ?? null;
-            // echo "Not empty";
-            //print_r("value: " . $value);   
+            $value = $value[$key] ?? null;  
         }
 
         else if(!$value)
         {
             $newPath .= '/' . $key;
-            // print_r("newpath: " . $newPath . ", key: " . $key . "\n");
 
             if(is_file(path('config'.$newPath.'.php')))
             {
                 $value = loadConfig($newPath.'.php');
-                // echo "path value: "; print_r($value);
             }
         }
     }
