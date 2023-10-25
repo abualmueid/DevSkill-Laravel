@@ -4,6 +4,7 @@ namespace DevSkill;
 
 use DevSkill\Abstraction\ProviderInterface;
 use DevSkill\Providers\RouteServiceProvider;
+use DevSkill\Supports\Route;
 use Exception;
 
 class Application
@@ -51,7 +52,7 @@ class Application
             //echo("\n".readConfig('Services.database'));
 
             $value = config('basic.Services.facebook.api_key');
-            echo json_encode($value);
+            // echo json_encode($value);
 
             foreach($this->providers as $provider)
             {
@@ -67,5 +68,37 @@ class Application
         } catch(Exception $exception) {
             echo $exception->getMessage();
         }
+
+        $this->initRoute();
+    }
+
+    private function initRoute()
+    {
+        try
+        {
+            $path = $_SERVER['REQUEST_URI'];
+
+            $routes = Route::getRoutes();
+            //echo json_encode($routes);
+            $route = array_filter($routes, function($route) use($path){
+                return $route['path'] == $path;
+            })[0] ?? [];
+
+            if(!$route)
+            {
+                throw new Exception("Route not found!");
+            }
+            // echo json_encode($route);
+
+            $callback = $route['callback'];
+            // echo json_encode($callback);
+            $controller = new $callback[0]();
+            $controller->{$callback[1]}();
+        } 
+        catch(Exception $exception)
+        {
+            echo $exception->getMessage();
+        }
+        
     }
 }

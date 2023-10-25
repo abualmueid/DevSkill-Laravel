@@ -8,7 +8,7 @@ class RouteServiceProvider implements ProviderInterface
 {
     public function boot(): void
     {
-        echo "\nApplication booting...";
+        // echo "\nApplication booting...";
         include app()->path('routes/Web.php');
     }
 
