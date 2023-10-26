@@ -80,15 +80,28 @@ class Application
 
             $routes = Route::getRoutes();
             //echo json_encode($routes);
-            $route = array_filter($routes, function($route) use($path){
-                return $route['path'] == $path;
-            })[0] ?? [];
 
+            // $route = array_filter($routes, function($route) use($path){
+            //     return $route['path'] == $path;
+            // })[1] ?? [];
+            
+            $route = [];
+            foreach($routes as $route)
+            {
+                if($route['path'] === $path)
+                {
+                    $route = $route;
+                    break;
+                }
+            }
+
+            //echo json_encode($route);
+            //print_r($route);
             if(!$route)
             {
                 throw new Exception("Route not found!");
             }
-            // echo json_encode($route);
+            
 
             $callback = $route['callback'];
             // echo json_encode($callback);

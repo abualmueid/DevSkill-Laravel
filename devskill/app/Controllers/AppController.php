@@ -12,6 +12,7 @@ class AppController
 
         $request = new Request();
         echo $request->name;
+        echo $request->email;
     }
 
     public function devskill(): void
