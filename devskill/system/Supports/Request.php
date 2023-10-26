@@ -10,12 +10,13 @@ class Request
     {
         foreach($_GET as $name => $value)
         {
-            $this->data[$name] = $_GET[$name];
+            $this->data[$name] = $value;
         }
 
+        // $this->data = array_merge($this->data, $_POST);
         foreach($_POST as $name => $value)
         {
-            $this->data[$name] = $_POST[$name];
+            $this->data[$name] = $value;
         }
     }
 

@@ -77,33 +77,46 @@ class Application
         try
         {
             $path = $_SERVER['REQUEST_URI'];
-
             $routes = Route::getRoutes();
-            //echo json_encode($routes);
 
             // $route = array_filter($routes, function($route) use($path){
             //     return $route['path'] == $path;
             // })[1] ?? [];
             
-            $route = [];
-            foreach($routes as $route)
-            {
-                if($route['path'] === $path)
-                {
-                    $route = $route;
-                    break;
-                }
-            }
+            // $route = [];
+            // foreach($routes as $route)
+            // {
+            //     if($route['path'] === $path)
+            //     {
+            //         $route = $route;
+            //         break;
+            //     }
+            // }
 
-            //echo json_encode($route);
-            //print_r($route);
-            if(!$route)
+            // foreach($routes as $path => $callback)
+            // {
+            //     if($path === $path)
+            //     {
+            //         $route = $callback;
+            //         break;
+            //     }
+            // }
+            // $method = [];
+            $method = $_SERVER['REQUEST_METHOD'];
+
+            $callback = [];
+            if($routes[$path]['method'] === $method)
+            {
+                $callback = $routes[$path]['callback'];
+            }
+            // $callback = $routes[$path]['callback'];
+            // print_r($route);
+            if(!$callback)
             {
                 throw new Exception("Route not found!");
             }
             
-
-            $callback = $route['callback'];
+            // $callback = $route['callback'];
             // echo json_encode($callback);
             $controller = new $callback[0]();
             $controller->{$callback[1]}();

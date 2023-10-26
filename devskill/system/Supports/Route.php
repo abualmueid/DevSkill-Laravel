@@ -4,7 +4,7 @@ namespace DevSkill\Supports;
 
 class Route
 {
-    private static array $routes;
+    private static array $routes = [];
 
     public static function __callStatic($method, $args)
     {
@@ -15,12 +15,17 @@ class Route
 
         else
         {
-            self::$routes[] = [
-                "path" => $args[0],
+            // self::$routes[] = [
+            //     "path" => $args[0],
+            //     "callback" => $args[1]
+            // ];
+
+            // self::$routes[$args[0]] = $args[1]; // path = $args[0], callback = $args[1]
+
+            self::$routes[$args[0]] = [
+                "method" => $method,
                 "callback" => $args[1]
             ];
-
-            // self::$routes[$args[0]] = $args[1];
         }
 
         //print_r(self::$routes);
