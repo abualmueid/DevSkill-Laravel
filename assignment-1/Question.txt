@@ -1,0 +1,18 @@
+Question:
+
+You are tasked with creating a simple program that manages a list of students' information. Each student's information includes their name, age, and favorite subjects. You need to perform the following tasks:
+
+Create an array of student information with the following structure for three students:
+
+Student 1: Name - "John", Age - 20, Favorite Subjects - ["Math", "Science"]
+Student 2: Name - "Alice", Age - 18, Favorite Subjects - ["History", "English"]
+Student 3: Name - "Bob", Age - 19, Favorite Subjects - ["Art", "Music"]
+
+Write a PHP function to calculate the average age of the students.
+
+Write a PHP function to find and return the student with the most favorite subjects.
+Encode the student information array into JSON format & print Json.
+
+Decode the JSON data back into a PHP array.
+
+Loop through the decoded array and display the information of each student, including their name, age, and favorite subjects. 
