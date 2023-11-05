@@ -79,6 +79,9 @@ class Application
             $path = $_SERVER['REQUEST_URI'];
             $routes = Route::getRoutes();
 
+            // echo json_encode($path);
+            // echo json_encode($routes);
+
             // $route = array_filter($routes, function($route) use($path){
             //     return $route['path'] == $path;
             // })[1] ?? [];
@@ -103,14 +106,16 @@ class Application
             // }
             // $method = [];
             $method = $_SERVER['REQUEST_METHOD'];
+            // echo json_encode(strtolower($method));
 
             $callback = [];
-            if($routes[$path]['method'] === $method)
+            // echo json_encode($routes[$path]['method']);
+            if($routes[$path]['method'] === strtolower($method))
             {
                 $callback = $routes[$path]['callback'];
             }
             // $callback = $routes[$path]['callback'];
-            // print_r($route);
+            // echo json_encode($callback);
             if(!$callback)
             {
                 throw new Exception("Route not found!");

@@ -1,6 +1,7 @@
 <?php
 
 use DevSkill\Application;
+use DevSkill\Supports\Request;
 
 function app(): Application
 {
@@ -54,4 +55,9 @@ function config($path, $default = null)
     }
 
     return $value ?? $default;
+}
+
+function request(): Request
+{
+    return Request::instance();
 }

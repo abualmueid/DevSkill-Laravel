@@ -11,9 +11,9 @@ class AppController
         echo "We are making our own routing system!\n";
 
         $request = new Request();
-        // echo $request->name;
-        // echo $request->email;
-        echo json_encode($request->all());
+        echo $request->name;
+        echo $request->email;
+        // echo json_encode($request->all());
     }
 
     public function devskill(): void
