@@ -18,9 +18,14 @@ class Request
         return self::$instance;
     }
 
-    public function __get(string $name): string|null
+    public function __get($name)
     {
         return $this->data[$name] ?? null;
+    }
+
+    public function input(string $key): mixed
+    {
+        return $this->data[$key] ?? null;
     }
 
     public function __construct()

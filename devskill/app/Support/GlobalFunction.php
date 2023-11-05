@@ -61,3 +61,10 @@ function request(): Request
 {
     return Request::instance();
 }
+
+function view($path, $data = [])
+{
+    extract($data);
+
+    return include path('resources/views/'.$path.'.php');
+}
