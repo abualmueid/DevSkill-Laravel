@@ -6,4 +6,5 @@ include('vendor/autoload.php');
 $application = \DevSkill\Application::instance(__DIR__);
 
 echo $application->rootPath();
-echo $application->boot();
+echo $application->boot(); 
+
