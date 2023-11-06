@@ -2,6 +2,10 @@
 
 namespace DevSkill\Supports;
 
+/**
+ * @method static Route get($path, $callback, $middleware)
+ */
+
 class Route
 {
     private static array $routes = [];
@@ -11,10 +15,7 @@ class Route
         if($method === 'getRoutes')
         {
             return self::getRoutes();
-        }
-
-        else
-        {
+        } else {
             // self::$routes[] = [
             //     "path" => $args[0],
             //     "callback" => $args[1]
@@ -22,10 +23,20 @@ class Route
 
             // self::$routes[$args[0]] = $args[1]; // path = $args[0], callback = $args[1]
 
-            self::$routes[$args[0]] = [
-                "method" => $method,
+            // self::$routes[$args[0]] = [
+            //     "method" => $method,
+            //     "callback" => $args[1]
+            // ];
+            
+            // For Middleware
+
+            $middleware = $args[2];
+
+            self::$routes[$args[0]][$method] = [
+                "middleware" => $middleware,
                 "callback" => $args[1]
             ];
+
         }
 
         //print_r(self::$routes);

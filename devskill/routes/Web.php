@@ -6,8 +6,11 @@ use DevSkill\Supports\Route;
 // $route = new Route();
 // $route->get('/', [AppController::class, 'index']);
 
-Route::get('/', [AppController::class, 'index']);
+// Route::get('/', [AppController::class, 'index']);
+
 // Route::post('/', [AppController::class, 'devskill']);
 Route::get('/devskill', [AppController::class, 'devskill']);
+
+Route::get('/', [AppController::class, 'index'], );
 
 
