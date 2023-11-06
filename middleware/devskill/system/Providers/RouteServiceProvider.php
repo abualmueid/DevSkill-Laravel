@@ -1,0 +1,15 @@
+<?php
+
+namespace DevSkill\Providers;
+
+use DevSkill\Abstraction\ProviderInterface;
+
+class RouteServiceProvider implements ProviderInterface
+{
+    public function boot(): void
+    {
+        // echo "\nApplication booting...";
+        include app()->path('routes/Web.php');
+    }
+
+}
