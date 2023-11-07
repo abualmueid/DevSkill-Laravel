@@ -34,7 +34,7 @@ function config($path, $default = null)
     $newPath = '';
     $value = [];
 
-    $array = explode('.', $path);
+    $array = explode('.', $path); // basic.Services.facebook.api_key
     foreach ($array as $key)
     {
         if($value)
@@ -42,7 +42,7 @@ function config($path, $default = null)
             $value = $value[$key] ?? null;  
         }
 
-        else if(!$value)
+        if(!$value)
         {
             $newPath .= '/' . $key;
 

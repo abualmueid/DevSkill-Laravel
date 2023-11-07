@@ -102,7 +102,7 @@ class Application
             //     }
             // }
             // $method = [];
-            $method = $_SERVER['REQUEST_METHOD'];
+            $method = strtolower($_SERVER['REQUEST_METHOD']);
 
             $callback = [];
             if($routes[$path]['method'] === $method)

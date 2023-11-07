@@ -20,6 +20,11 @@ class Request
         }
     }
 
+    public function __get($name): mixed
+    {
+        return $_GET[$name] ?? null;
+    }
+
     public function all(): array
     {
         return $this->data;
