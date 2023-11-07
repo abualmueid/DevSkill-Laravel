@@ -17,8 +17,8 @@ class AppController
         // // echo $request->email;
         // echo json_encode($request->all());
 
-        // request()->email;
-        // request()->input('email');
+        request()->email;
+        request()->input('email');
 
         // View
         return view('welcome', [
