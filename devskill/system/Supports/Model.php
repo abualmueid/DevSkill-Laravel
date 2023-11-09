@@ -22,7 +22,7 @@ class Model
     public function first()
     {
        
-        $statement = $this->connection->prepare("SELECT * from " . $this->table);
+        $statement = $this->connection->prepare("SELECT * from " . $this->table . $this->processWhere());
         $statement->execute();
 
         return $statement->fetch(PDO::FETCH_ASSOC);
@@ -31,7 +31,7 @@ class Model
     public function get()
     {
        
-        $statement = $this->connection->prepare("SELECT * from " . $this->table);
+        $statement = $this->connection->prepare("SELECT * from " . $this->table . $this->processWhere());
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
