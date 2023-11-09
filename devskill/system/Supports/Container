@@ -1,0 +1,11 @@
+<?php 
+
+namespace DevSkill\Supports;
+
+class Container 
+{
+    public function get($connection)
+    {
+        return $connection;
+    }
+}
