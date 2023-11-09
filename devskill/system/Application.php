@@ -6,9 +6,10 @@ use DevSkill\Abstraction\MiddlewareContract;
 use DevSkill\Abstraction\ProviderInterface;
 use DevSkill\Providers\RouteServiceProvider;
 use DevSkill\Supports\Route;
+use DevSkill\Supports\Container;
 use Exception;
 
-class Application
+class Application extends Container
 {
     private string $rootPath;
     protected array $providers = [
@@ -136,10 +137,10 @@ class Application
                 if($routeMiddleware)
                 {
                     $instance = new $routeMiddleware();
-
+                    $instance->handle();
                     if($instance instanceof MiddlewareContract)
                     {
-                        $instance->handle();
+                        // $instance->handle();
                     } else {
                         echo $instance::class . " should extend " . MiddlewareContract::class;
                     }
