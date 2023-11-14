@@ -1,5 +1,12 @@
 <?php 
 
-namespace mvc;
+include('Devskill/System/Application.php');
 
-echo "Hello World";
+// include('vendor/autoload.php');
+
+use Devskill\System\Application;
+
+echo "PHP";
+
+$application = new Application();
+$application->run();
