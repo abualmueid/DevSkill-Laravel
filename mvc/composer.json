@@ -1,0 +1,15 @@
+{
+    "name": "devskill/mueid",
+    "autoload": {
+        "psr-4": {
+            "MVC\\": "mvc/"
+        }
+    },
+    "authors": [
+        {
+            "name": "abualmueid",
+            "email": "61595430+abualmueid@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
