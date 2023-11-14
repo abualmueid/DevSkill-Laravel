@@ -2,7 +2,9 @@
 
 namespace App\Provider;
 
-class UserServiceProvider 
+use System\Abstraction\ProviderInterface;
+
+class UserServiceProvider implements ProviderInterface
 {
     public function start(): void 
     {

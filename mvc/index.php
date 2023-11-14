@@ -2,7 +2,8 @@
 
 namespace MVC;
 
-include('vendor/autoload.php');
+include('System/Application.php');
+// include('vendor/autoload.php');
 
 use System\Application;
 

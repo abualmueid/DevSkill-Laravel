@@ -2,7 +2,9 @@
 
 namespace System\Provider;
 
-class RouteServiceProvider 
+use System\Abstraction\ProviderInterface;
+
+class RouteServiceProvider implements ProviderInterface
 {
     public function start(): void 
     {

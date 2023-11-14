@@ -2,7 +2,9 @@
     "name": "devskill/mueid",
     "autoload": {
         "psr-4": {
-            "MVC\\": "mvc/"
+            "MVC\\": "mvc/",
+            "App\\": "App/",
+            "System\\": "System/"
         }
     },
     "authors": [
@@ -10,6 +12,9 @@
             "name": "abualmueid",
             "email": "61595430+abualmueid@users.noreply.github.com"
         }
+    ],
+    "files": [
+        "App/Support/GlobalFunction.php"
     ],
     "require": {}
 }
