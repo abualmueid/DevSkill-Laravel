@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use System\Application;
+use System\Support\Request;
 
 function app(): Application 
 {
@@ -47,4 +48,9 @@ function config(string $pathParam): mixed
     }
 
     return $value ?? null;
+}
+
+function request(): Request 
+{
+    return Request::instance();
 }
