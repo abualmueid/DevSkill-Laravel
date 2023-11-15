@@ -27,6 +27,11 @@ class Request
         return $_GET[$name] ?? null;
     }
 
+    public function input(string $name)
+    {
+        return $_GET[$name] ?? null;
+    }
+
     public function setGetData(): void 
     {
         foreach($_GET as $name => $value)

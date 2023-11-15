@@ -6,14 +6,23 @@ use System\Support\Request;
 
 class AppController 
 {
-    public function index(): void 
+    public function index() 
     {
         echo "App Controller starts!";
 
-        // Request Handling from URL
+        // Request Handling from URL //
 
-        request()->email; // $request = new Request(); // $request->email;
-        echo json_encode(request()->getData());
+        // request()->email; // $request = new Request(); // $request->email;
+        // echo json_encode(request()->getData());
+
+        // Working with View //
+
+        return view('Welcome', [
+            "name" => "mueid",
+            "email" => "abualmueid24@gmail.com"
+        ]);
+
+
     }
 
     public function rizikprogrammer(): void 

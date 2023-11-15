@@ -11,6 +11,7 @@ use System\Provider\RouteServiceProvider;
 use App\Provider\UserServiceProvider;
 use App\Support;
 use Exception;
+use System\Abstraction\MiddlewareContract;
 use System\Abstraction\ProviderInterface;
 use System\Support\Route;
 
@@ -88,6 +89,7 @@ class Application
         $this->initRoute();
     }
 
+    /*
     private function initRoute()
     {
         try{
@@ -98,6 +100,52 @@ class Application
             
             if($method === $routes[$path]['method']){
                 $callback = $routes[$path]['callback'];
+            }
+
+            if(!$callback){
+                throw new Exception("Route not found!");
+            } else {
+                $controller = new $callback[0];
+                $controller->{$callback[1]}();
+            }
+        } catch (Exception $exception){
+            echo $exception->getMessage();
+        }
+    }
+    */
+
+    // For Middleware // 
+
+    private function initRoute()
+    {
+        try{
+            $path = $_SERVER['REQUEST_URI'];
+            $routes = Route::getRoutes();
+
+            $method = strtolower($_SERVER['REQUEST_METHOD']);
+
+            $middleware = '';
+            $callback = [];
+            if($method === $routes[$path][$method]){
+                $middleware = $routes[$path][$method]['middleware'] ?? '';
+                $callback = $routes[$path][$method]['callback'] ?? [];
+            }
+
+            if(!$middleware){
+                throw new Exception("Middleware not found!");
+            } else {
+                $middlewares = config('App.middlewares');
+                $middleware = $middlewares[$middleware] ?? [];
+
+                if($middleware) {
+                    $middlewareInstance = new $middleware();
+
+                    if($middlewareInstance instanceof MiddlewareContract){
+                        $middlewareInstance->handle();
+                    } else {
+                        echo $middleware::class . " should extend " . MiddlewareContract::class;
+                    }
+                }
             }
 
             if(!$callback){
