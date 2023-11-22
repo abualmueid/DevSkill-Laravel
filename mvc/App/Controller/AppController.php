@@ -10,12 +10,16 @@ class AppController
     {
         echo "<br>App Controller starts!";
 
-        // Request Handling from URL //
+        /**
+         * Request Handling from URL
+         */
 
-        // request()->email; // $request = new Request(); // $request->email;
-        // echo json_encode(request()->getData());
+        request()->email; // $request = new Request(); // $request->email;
+        echo json_encode(request()->getData());
 
-        // Working with View //
+        /**
+         * Working with View
+         */
 
         return view('Welcome', [
             "name" => "mueid",
