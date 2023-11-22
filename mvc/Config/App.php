@@ -1,15 +1,13 @@
 <?php 
 
-namespace MVC\Config;
-
-use App\Controller\TestMiddleware;
-use System\Provider\RouteServiceProvider;
+use App\Middleware\TestMiddleware;
+use App\Provider\UserServiceProvider;
 
 return [
     "app_name" => "mvc",
     "version" => "1.0.0",
     "providers" => [
-        RouteServiceProvider::class
+        UserServiceProvider::class
     ],
     "middlewares" => [
         "test" => TestMiddleware::class

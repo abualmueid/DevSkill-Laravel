@@ -13,5 +13,5 @@ abstract class MiddlewareContract
         $this->request = request();
     }
 
-    protected function handle();
+    protected abstract function handle();
 }

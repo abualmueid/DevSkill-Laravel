@@ -5,16 +5,16 @@
             "MVC\\": "mvc/",
             "App\\": "App/",
             "System\\": "System/"
-        }
+        },
+        "files": [
+            "App/Support/GlobalFunction.php"
+        ]
     },
     "authors": [
         {
             "name": "abualmueid",
             "email": "61595430+abualmueid@users.noreply.github.com"
         }
-    ],
-    "files": [
-        "App/Support/GlobalFunction.php"
     ],
     "require": {}
 }

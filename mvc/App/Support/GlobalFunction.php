@@ -1,21 +1,19 @@
 <?php 
 
-namespace App\Support;
-
 use System\Application;
 use System\Support\Request;
 
 function app(): Application 
 {
-    return Application::instance();
+    return Application::instance(__DIR__);
 }
 
-function path(string $path = null): string 
+function path(string $path = null): string
 {
     return app()->path($path);   
 }
 
-function loadConfig(string $path): string
+function loadConfig(string $path)
 {
     $path = app()->path('Config/'.$path);
 

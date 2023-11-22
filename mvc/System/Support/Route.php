@@ -2,11 +2,11 @@
 
 namespace System\Support;
 
-/** @method static Route get($path, $name, $middleware) */
+// /** @method static Route get($path, $name, $middleware) */
 
 class Route 
 {
-    private static array $routes;
+    private static array $routes = [];
 
     /*
     protected static function __callStatic($name, $arguments)
@@ -24,14 +24,14 @@ class Route
 
     // Middleware Part //
 
-    protected static function __callStatic($name, $arguments)
+    public static function __callStatic($name, $arguments)
     {
         if($name === 'getRoutes'){
             return self::getRoutes();
         } else {
             $middleware = $arguments[2];
 
-            $routes[$arguments[0]][$name] = [
+            self::$routes[$arguments[0]][$name] = [
                 "middleware" => $middleware,
                 "callback" => $arguments[1]
             ];

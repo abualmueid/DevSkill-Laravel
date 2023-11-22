@@ -2,35 +2,31 @@
 
 namespace System;
 
-include('System\Provider\RouteServiceProvider.php');
-include('App\Provider\UserServiceProvider.php');
-include('App\Config\App.php');
-include('App/Support/GlobalFunction.php');
-
 use System\Provider\RouteServiceProvider;
 use App\Provider\UserServiceProvider;
 use App\Support;
+use App\Support\GlobalFunction;
 use Exception;
 use System\Abstraction\MiddlewareContract;
 use System\Abstraction\ProviderInterface;
 use System\Support\Route;
+use MVC\Config\App;
+use MVC\App\Controller\TestMiddleware;
 
 class Application 
 {
-
     private string $rootPath;
     private static Application|null $instance = null;
     private array $providers = [
         RouteServiceProvider::class
     ];
 
-
     public function __construct(string $path)
     {
         $this->rootPath = $path;
     }
 
-    public static function instance(string $path = null): self 
+    public static function instance(string $path = null): Application 
     {
         if(!self::$instance)
         {
@@ -45,8 +41,9 @@ class Application
         return $this->rootPath;
     }
 
-    public function path($path = null): string 
+    public function path(string $path = null): string 
     {
+    
         return $this->rootPath . ($path ?  DIRECTORY_SEPARATOR . $path : '');
     }
 
@@ -54,18 +51,10 @@ class Application
     {
         try{
             echo "Application Starts...";
-        
-            $routeServiceProvider = new RouteServiceProvider();
-            $routeServiceProvider->start();
             
-            $userServiceProvider = new UserServiceProvider();
-            $userServiceProvider->start();
-
             $appConfig = loadConfig('App.php');
-            // echo json_encode($appConfig);
-
             $this->providers = array_merge($this->providers, $appConfig['providers']);
-
+    
             foreach($this->providers as $provider)
             {
                 $providerInstance = new $provider();
@@ -83,6 +72,7 @@ class Application
         // Folder, Sub-Folder, File Handling
 
         $value = config('Basic.Services.facebook.api_key'); // "Basic.Services.facebook.api_key"
+        echo json_encode("<br>api_key: " . $value);
 
         // Route Handling
 
@@ -119,24 +109,25 @@ class Application
     private function initRoute()
     {
         try{
+            // $path = strtok($_SERVER['REQUEST_URI'], '/');
             $path = $_SERVER['REQUEST_URI'];
             $routes = Route::getRoutes();
-
-            $method = strtolower($_SERVER['REQUEST_METHOD']);
+            $methodServer = strtolower($_SERVER['REQUEST_METHOD']);
 
             $middleware = '';
             $callback = [];
-            if($method === $routes[$path][$method]){
-                $middleware = $routes[$path][$method]['middleware'] ?? '';
-                $callback = $routes[$path][$method]['callback'] ?? [];
-            }
+            $method = $methodServer;
+            $middlewareRoute = '';
 
-            if(!$middleware){
+            $middlewareRoute = $routes['/'][$method]['middleware'] ?? ''; // Manually setting path
+            $callback = $routes['/'][$method]['callback'] ?? [];
+            
+            if(!$middlewareRoute){
                 throw new Exception("Middleware not found!");
             } else {
                 $middlewares = config('App.middlewares');
-                $middleware = $middlewares[$middleware] ?? [];
-
+                $middleware = $middlewares[$middlewareRoute] ?? [];
+                
                 if($middleware) {
                     $middlewareInstance = new $middleware();
 
@@ -147,15 +138,16 @@ class Application
                     }
                 }
             }
-
+            
             if(!$callback){
                 throw new Exception("Route not found!");
             } else {
                 $controller = new $callback[0];
                 $controller->{$callback[1]}();
-            }
+            } 
         } catch (Exception $exception){
             echo $exception->getMessage();
         }
     }
+    
 }

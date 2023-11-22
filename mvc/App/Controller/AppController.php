@@ -8,7 +8,7 @@ class AppController
 {
     public function index() 
     {
-        echo "App Controller starts!";
+        echo "<br>App Controller starts!";
 
         // Request Handling from URL //
 
