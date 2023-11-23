@@ -12,8 +12,9 @@ use System\Abstraction\ProviderInterface;
 use System\Support\Route;
 use MVC\Config\App;
 use MVC\App\Controller\TestMiddleware;
+use PluginMaster\Container\Container;
 
-class Application 
+class Application extends Container
 {
     private string $rootPath;
     private static Application|null $instance = null;

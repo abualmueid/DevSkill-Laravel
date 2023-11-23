@@ -16,5 +16,7 @@
             "email": "61595430+abualmueid@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require":  {
+        "plugin-master/container": "^1.0"
+    }
 }
