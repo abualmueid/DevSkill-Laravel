@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserCustomAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', [HomeController::class, '__invoke']);
 Route::get('/', HomeController::class);
+
+Route::get('/auth-user', UserCustomAuthController::class)->middleware('custom-auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
